@@ -25,13 +25,15 @@ JNIEXPORT jint JNICALL Java_sqlab_craxdroid_vulnapp_VulnApp_main
     file = open("/data/local/tmp/input", O_RDONLY);
     status = fstat(file, &buffer);
 
-    __android_log_print(ANDROID_LOG_VERBOSE, "VulnApp", "File size: %d\n", buffer.st_size);
+    __android_log_print(ANDROID_LOG_VERBOSE, "VulnApp",
+            "File size: %d\n", buffer.st_size);
 
     buf = (char*) malloc(buffer.st_size);
     if (buf != NULL) {
         int n = 0;
         if ((n = read(file, buf, buffer.st_size)) > 0) {
-            __android_log_print(ANDROID_LOG_VERBOSE, "VulnApp", "Read size: %d\n", n);
+            __android_log_print(ANDROID_LOG_VERBOSE, "VulnApp",
+                    "Read size: %d\n", n);
             foo(buf);
         }
         free(buf);
